@@ -440,7 +440,6 @@ assign [class="Mousepad"] → $ws6
 #exec --no-startup-id firefox
 #exec --no-startup-id discord
 #exec --no-startup-id ranger
-#exec --no-startup-id alacritty
 
 #Auto Open Apps
 exec --no-startup-id ranger
