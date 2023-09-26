@@ -148,8 +148,8 @@ set $ws3 "3: Web"
 set $ws4 "4: Games"
 set $ws5 "5: Files"
 set $ws6 "6: Notes"
-set $ws7 "8: Development"
-set $ws8 "9: ETC"
+set $ws7 "7: VMS"
+set $ws8 "8: Development"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -397,13 +397,23 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-#Basic Apps and  such
+
+#Monitor and Worksapce Layout
 exec --no-startup-id xrandr --output DP-0 --auto --right-of DP-3 &
+workspace 1 output DP-0
+workspace 2 output DP-3
+workspace 3 output DP-0
+workspace 4 output DP-3
+workspace 5 output DP-0
+workspace 6 output DP-3
+workspace 7 output DP-0
+workspace 8 output DP-3
+
+#Basic i3 related apps setup
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id always nitrogen --restore
 bindsym $mod+x exec /home/$USER/.config/scripts/lock
-#interactive screenshot by pressing printscreen
-bindsym $mod+p exec gnome-screenshot -i 
+
 # Transparency with picom compositor
 exec_always picom -f
 
@@ -425,6 +435,8 @@ for_window [instance="^sun-awt-X11-XDialogPeer$" title="^Complete Installation$"
 #Custom Keybinds
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+p exec gnome-screenshot -i
+bindsym $mod+Shift+w exec virsh --connect qemu:///system start win10
 
 #Custom Workspaces
 assign [class="firefox" instance="Navigator"] → $ws3
@@ -435,11 +447,10 @@ assign [class="ranger"] → $ws5
 for_window [class="ranger"] move to workspace $ws5
 for_window [class="Mousepad"] move to workspace $ws6
 assign [class="Mousepad"] → $ws6
-
-#Preset Windows to Open
-#exec --no-startup-id firefox
-#exec --no-startup-id discord
-#exec --no-startup-id ranger
+for_window [class="Virt-manager"] move to workspace $ws7
+assign [class="Virt-manager"] → $ws7
+for_window [class="Pcmanfm"] move to workspace $ws5
+assign [class="Pcmanfm"] → $ws5
 
 #Auto Open Apps
 exec --no-startup-id ranger
@@ -447,4 +458,5 @@ exec --no-startup-id firefox
 exec --no-startup-id discord
 exec --no-startup-id alacritty
 exec --no-startup-id mousepad
-exec --no-startup-id i3-msg '5: Files; exec /usr/bin/ranger'
+exec --no-startup-id virt-manager
+exec --no-startup-id pcmanfm
