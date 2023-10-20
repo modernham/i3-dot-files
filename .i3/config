@@ -428,6 +428,11 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
+for_window [title="^Virtual Machine Manager$"] floating enable
+for_window [title="^Virt-manager$"] floating enable
+for_window [title="^virt-manager$"] floating enable
+for_window [title="^Virt-viewer$"] floating enable
+for_window [title="^virt-viewer$"] floating enable
 # Jetbrains
 for_window [class="^com-intellij-updater-Runner$" title="^Update$"] floating enable
 for_window [instance="^sun-awt-X11-XDialogPeer$" title="^Complete Installation$"] floating enable
@@ -437,6 +442,7 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 bindsym $mod+p exec gnome-screenshot -i
 bindsym $mod+Shift+w exec virsh --connect qemu:///system start win10
+bindsym $mod+Ctrl+s exec sudo shutdown -h now
 
 #Custom Workspaces
 assign [class="firefox" instance="Navigator"] → $ws3
@@ -447,8 +453,6 @@ assign [class="ranger"] → $ws5
 for_window [class="ranger"] move to workspace $ws5
 for_window [class="Mousepad"] move to workspace $ws6
 assign [class="Mousepad"] → $ws6
-for_window [class="Virt-manager"] move to workspace $ws7
-assign [class="Virt-manager"] → $ws7
 for_window [class="Pcmanfm"] move to workspace $ws5
 assign [class="Pcmanfm"] → $ws5
 
@@ -457,6 +461,5 @@ exec --no-startup-id ranger
 exec --no-startup-id firefox
 exec --no-startup-id discord
 exec --no-startup-id alacritty
-exec --no-startup-id mousepad
 exec --no-startup-id virt-manager
 exec --no-startup-id pcmanfm
